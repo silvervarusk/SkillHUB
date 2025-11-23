@@ -10,7 +10,8 @@
 <body>
   <header class="blog-header">
     <h1 class="logo">SkillHUB</h1>
-    <nav>
+    <button id="menu-toggle" aria-expanded="false" aria-controls="main-nav">Menu</button>
+    <nav id="main-nav">
       <ul>
         <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>
@@ -94,6 +95,56 @@
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') closeLightbox();
       });
+    })();
+  </script>
+  <script>
+    // Simple router: show only the section referenced by hash (default: about)
+    (function () {
+      const sections = ['about', 'projects', 'contact'];
+      const menuToggle = document.getElementById('menu-toggle');
+      const mainNav = document.getElementById('main-nav');
+
+      function showSection(name) {
+        sections.forEach(id => {
+          const el = document.getElementById(id);
+          if (!el) return;
+          if (id === name) el.style.display = '';
+          else el.style.display = 'none';
+        });
+
+        // Hide nav on About by default
+        if (name === 'about') {
+          document.body.classList.add('about-only');
+          mainNav.style.display = 'none';
+          menuToggle.setAttribute('aria-expanded', 'false');
+        } else {
+          document.body.classList.remove('about-only');
+          mainNav.style.display = '';
+          menuToggle.setAttribute('aria-expanded', 'true');
+        }
+      }
+
+      function handleHash() {
+        const hash = (location.hash || '#about').replace('#', '');
+        const target = sections.includes(hash) ? hash : 'about';
+        showSection(target);
+      }
+
+      // toggle menu visibility when on About
+      menuToggle.addEventListener('click', function () {
+        if (mainNav.style.display === 'none' || mainNav.style.display === '') {
+          // show nav
+          mainNav.style.display = '';
+          this.setAttribute('aria-expanded', 'true');
+        } else {
+          mainNav.style.display = 'none';
+          this.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      window.addEventListener('hashchange', handleHash);
+      // Initialize
+      handleHash();
     })();
   </script>
 </body>

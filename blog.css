@@ -30,6 +30,34 @@ nav a {
   text-decoration: none;
 }
 
+/* Hide nav by default in About-only view; show Menu button */
+#menu-toggle {
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+/* When showing About only, hide the nav list */
+.about-only #main-nav {
+  display: none;
+}
+
+/* Ensure nav looks okay when visible */
+#main-nav ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 12px;
+}
+
+@media (max-width: 640px) {
+  #main-nav ul { flex-direction: column; background: #222; padding: 10px; border-radius: 6px; }
+}
+
 .intro {
   text-align: center;
   padding: 40px 20px;
