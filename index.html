@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SkillHUB Portfolio</title>
   <link rel="stylesheet" href="blog.css">
+  <!-- Bootstrap 5 CSS (CDN) for Blog layout -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ENjdO4Dr2bkBIFxQpeoYz1FQjaO6c5Q5Y5b6rZ9S2mQmY1u5q0I5q0nQ5C5x5d5v" crossorigin="anonymous">
 </head>
 <body>
   <header class="blog-header">
@@ -15,6 +17,7 @@
       <ul>
         <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>
+        <li><a href="#blog">Blog</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -38,6 +41,41 @@
         </a>
         <figcaption>Project 1 — <a class="download-link" href="images/Project1pilt.png" download>Download image</a></figcaption>
       </figure>
+    </section>
+
+    <!-- Blog section: Bootstrap-inspired layout -->
+    <section id="blog" class="container py-5">
+      <div class="row">
+        <div class="col-md-8">
+          <h2 class="mb-4">Latest Posts</h2>
+
+          <article class="mb-5">
+            <h3 class="h4">Getting started with Excel for projects</h3>
+            <p class="text-muted">Nov 2025 · by You</p>
+            <p>Short excerpt describing the post — a quick summary of how Excel helped structure the project data and insights.</p>
+            <p><a href="#" class="btn btn-sm btn-primary">Read more</a></p>
+          </article>
+
+          <article class="mb-5">
+            <h3 class="h4">Project planning techniques</h3>
+            <p class="text-muted">Oct 2025 · by You</p>
+            <p>Short excerpt about planning and delivering projects with simple tools.</p>
+            <p><a href="#" class="btn btn-sm btn-primary">Read more</a></p>
+          </article>
+        </div>
+
+        <aside class="col-md-4">
+          <div class="p-3 mb-3 bg-light rounded">
+            <h4>About this blog</h4>
+            <p class="mb-0">Short description. Use this area for quick notes or contact info.</p>
+          </div>
+
+          <div class="p-3">
+            <h4>Recent images</h4>
+            <img src="images/Project1pilt.png" alt="Project thumbnail" class="img-fluid rounded">
+          </div>
+        </aside>
+      </div>
     </section>
 
     <section id="contact">
@@ -100,7 +138,7 @@
   <script>
     // Simple router: show only the section referenced by hash (default: about)
     (function () {
-      const sections = ['about', 'projects', 'contact'];
+      const sections = ['about', 'projects', 'blog', 'contact'];
       const menuToggle = document.getElementById('menu-toggle');
       const mainNav = document.getElementById('main-nav');
 
