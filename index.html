@@ -32,8 +32,10 @@
       <h2>Projects</h2>
       <p>This is my Projects with excel.</p>
       <figure>
-        <img class="project1-img" src="images/Project1pilt.png" alt="Project 1 image">
-        <figcaption>Project 1</figcaption>
+        <a class="project-download" href="images/Project1pilt.png" download>
+          <img id="project1" class="project1-img" src="images/Project1pilt.png" alt="Project 1 image">
+        </a>
+        <figcaption>Project 1 — <a class="download-link" href="images/Project1pilt.png" download>Download image</a></figcaption>
       </figure>
     </section>
 
@@ -46,5 +48,53 @@
   <footer>
     <p>&copy; 2025 SkillHUB Portfolio</p>
   </footer>
+
+  <!-- Lightbox overlay -->
+  <div id="lightbox-overlay" aria-hidden="true">
+    <button id="lightbox-close" aria-label="Close">×</button>
+    <img id="lightbox-img" src="" alt="Preview">
+  </div>
+
+  <script>
+    (function () {
+      const overlay = document.getElementById('lightbox-overlay');
+      const overlayImg = document.getElementById('lightbox-img');
+      const closeBtn = document.getElementById('lightbox-close');
+      const projectImg = document.getElementById('project1');
+
+      function openLightbox(src, alt) {
+        overlayImg.src = src;
+        overlayImg.alt = alt || 'Preview';
+        overlay.style.display = 'flex';
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLightbox() {
+        overlay.style.display = 'none';
+        overlay.setAttribute('aria-hidden', 'true');
+        overlayImg.src = '';
+        document.body.style.overflow = '';
+      }
+
+      projectImg.addEventListener('click', function (e) {
+        // If user holds ctrl/shift or middle-click, allow default (download)
+        if (e.ctrlKey || e.shiftKey || e.metaKey || e.button === 1) return;
+        e.preventDefault();
+        openLightbox(this.src, this.alt);
+      });
+
+      overlay.addEventListener('click', function (e) {
+        // close when clicking outside the image
+        if (e.target === overlay || e.target === closeBtn) closeLightbox();
+      });
+
+      closeBtn.addEventListener('click', closeLightbox);
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeLightbox();
+      });
+    })();
+  </script>
 </body>
 </html>
